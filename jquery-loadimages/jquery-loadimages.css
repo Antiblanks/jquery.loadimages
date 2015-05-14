@@ -1,0 +1,27 @@
+/**
+ * loadImages 0.0.1 - jQuery Plugin
+ * http://www.antiblanks.com/
+ * Copyright (c) 2014 Daniel Ivanovic
+ * Licensed under MIT and GPL
+ * Date: Fri, May 24 2015 15:58:56 -0800
+ */
+
+/* Loading styles */
+
+.load-images.load-images-loading img {
+	visibility: hidden;
+}
+
+.load-images.load-images-loading .load-images-loader {
+	display: block;
+}
+
+/* Loaded styles */
+
+.load-images.load-images-loaded img {
+	visibility: visible;
+}
+
+.load-images.load-images-loaded .load-images-loader {
+	display: none;
+}
