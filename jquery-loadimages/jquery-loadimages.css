@@ -8,20 +8,12 @@
 
 /* Loading styles */
 
-.load-images.load-images-loading img {
+.load-images.load-images-loading img.load-image {
 	visibility: hidden;
-}
-
-.load-images.load-images-loading .load-images-loader {
-	display: block;
 }
 
 /* Loaded styles */
 
-.load-images.load-images-loaded img {
+.load-images.load-images-loaded img.load-image {
 	visibility: visible;
-}
-
-.load-images.load-images-loaded .load-images-loader {
-	display: none;
 }

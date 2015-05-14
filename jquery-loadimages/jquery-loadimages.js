@@ -30,6 +30,7 @@ if (!window["$"]) {
 			// Events
 
 			self.IMAGES_LOADING = "loadImages.onImagesLoading";
+			self.IMAGE_LOADED = "loadImages.onImageLoaded";
 			self.IMAGES_LOADED = "loadImages.onImagesLoaded";
 			
 			// Public
@@ -100,22 +101,24 @@ if (!window["$"]) {
 				debug("Info:", "start();", initiated);
 				if (!initiated)
 					return;
-				var $imagesToLoad = $element.find("img");
+				var $imagesToLoad = $element.find("img.load-image");
 				imagesToLoad = $imagesToLoad.toArray();
 				imagesLoaded = 0;
 				$element.trigger(self.IMAGES_LOADING, self.getStateData());
 				if (imagesToLoad.length == 0) {
-					$element.addClass("load-images-loaded");
+					$element.removeClass(".load-images-loading").addClass("load-images-loaded");
 					$element.trigger(self.IMAGES_LOADED, self.getStateData());
 					return;
 				}
-				$element.addClass("load-images-loading");
+				$element.removeClass(".load-images-loaded").addClass("load-images-loading");
 				$.each($imagesToLoad, function(index, item) {
 					$(item)[0].onload = function() {
 						imagesLoaded++;
+						$element.trigger(self.IMAGE_LOADED, self.getStateData());
+						console.log("loaded", imagesLoaded);
 						if (imagesLoaded == imagesToLoad.length) {
 							setTimeout(function() {
-								$element.addClass("load-images-loaded");
+								$element.removeClass(".load-images-loading").addClass("load-images-loaded");
 								$element.trigger(self.IMAGES_LOADED, self.getStateData());
 							}, options.delayAfterLoadedInMs);
 						}
