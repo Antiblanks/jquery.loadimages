@@ -34,6 +34,21 @@ Next create an instance of the plugin on any container within your page that con
 Finally you can listen to the following events so that your page can respond to the LoadImages plugin state changes: 
 
 loadImages.onImagesLoading - Dispatched when image loading starts
+
+<pre>
+    var $loadImages = $("#container-with-images").loadImages();
+    $loadImages.on("loadImages.onImagesLoading", function() {
+        // show a loader or do something else...
+    });
+</pre>
+
 loadImages.onImagesLoaded - Dispatched when image loading completes
+
+<pre>
+    var $loadImages = $("#container-with-images").loadImages();
+    $loadImages.on("loadImages.onImagesLoaded", function() {
+        // Hide a loader or do something else...
+    });
+</pre>
 
 Enjoy!
