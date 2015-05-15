@@ -57,4 +57,9 @@ loadImages.onImagesLoaded - Dispatched when image loading completes
     });
 </pre>
 
+Demo
+======
+
+If you want to see the plugin in action there is a simple demo on our website: http://www.antiblanks.com/static/loadimages.proto/index.html
+
 Enjoy!
