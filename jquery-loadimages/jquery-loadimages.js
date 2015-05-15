@@ -93,6 +93,21 @@ if (!window["$"]) {
 			};
 
 			/**
+			 * onImageLoad
+			 * Called upon event of image load
+			 */
+			function onImageLoad() {
+				imagesLoaded++;
+				$element.trigger(self.IMAGE_LOADED, self.getStateData());
+				if (imagesLoaded == imagesToLoad.length) {
+					setTimeout(function() {
+						$element.removeClass(".load-images-loading").addClass("load-images-loaded");
+						$element.trigger(self.IMAGES_LOADED, self.getStateData());
+					}, options.delayAfterLoadedInMs);
+				}
+			};
+
+			/**
 			 * start
 			 * Attaches listeners to all contained images and dispatches
 			 * event once all images have loaded
@@ -112,17 +127,9 @@ if (!window["$"]) {
 				}
 				$element.removeClass(".load-images-loaded").addClass("load-images-loading");
 				$.each($imagesToLoad, function(index, item) {
-					$(item)[0].onload = function() {
-						imagesLoaded++;
-						$element.trigger(self.IMAGE_LOADED, self.getStateData());
-						console.log("loaded", imagesLoaded);
-						if (imagesLoaded == imagesToLoad.length) {
-							setTimeout(function() {
-								$element.removeClass(".load-images-loading").addClass("load-images-loaded");
-								$element.trigger(self.IMAGES_LOADED, self.getStateData());
-							}, options.delayAfterLoadedInMs);
-						}
-					};
+					$(item)[0].complete
+						? onImageLoad() 
+						: $(item)[0].onload = onImageLoad;
 				});
 			};
 
