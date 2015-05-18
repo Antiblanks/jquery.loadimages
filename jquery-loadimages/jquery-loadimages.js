@@ -127,6 +127,7 @@ if (!window["$"]) {
 				}
 				$element.removeClass(".load-images-loaded").addClass("load-images-loading");
 				$.each($imagesToLoad, function(index, item) {
+					$(item).attr("src", $(item).attr("src"));
 					$(item)[0].complete
 						? onImageLoad() 
 						: $(item)[0].onload = onImageLoad;
